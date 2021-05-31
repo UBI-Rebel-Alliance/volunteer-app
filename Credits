@@ -1,0 +1,18 @@
+This project was born within the FightPandemics community, the following are people who participated in the project design and development, thus we give thanks to them.
+
+@Eileen Tong @Shanak @Jessica Drozd and @CamiArias for designing on Figma the Badge's UI available here: https://www.figma.com/file/EMKcg0eTnOlr7bRZGFdnZu/Web-app-product-spec?node-id=790%3A773
+@Sid for writing and constantly improving the badge's smart contract, for building the roadmap of technical deliverables, for building the SubGraph of the badges, and for connecting back-end with front-end.
+@Lamont for developing the back-end of the create, assign, and manage badges.
+@Ludo for being present at 5am in a meeting, for being highly responsive and patient solving doubts, and taking care of setting the definitions of all tasks needed to integrate the magic.link wallets to the entire flow of minting and assigining them.
+@Jon Koh for setting the initial IPFS and Piñata configuration
+@Nícolas de Araujo for setting the db for the searchbar, and looking for what is needed to be carried out.
+@Andrea Ang for providing the names of all volunteers so that they can be found in the searchbar.
+@Kell Golden and @Dhruv Patel for their commitment on improving team work and managing the front-end dev.
+@Mushfi Chowdhury for taking care of the front-end dev.
+@Yegor Golovnia for being a great community manager that is responsive at all times I needed his help.
+@Cami Arias for being responsive, honest, and direct on feedback. Also for all the amazing job put to make the badge's UI possible.
+@Kofi Boateng for taking care of the bounties project with proactiveness while all the storm of minds are focusing on the badges.
+@Anise Parikh for giving his time and mind for working on cross-platform integration (DuinGud and FightPandemics).
+@Dawei Zhang for giving his time to provide me with better understanding of the databases.
+
+This list will update with new ppl joining and adding effort on releasing this project.
