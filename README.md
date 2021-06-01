@@ -98,7 +98,7 @@ Run below commands in project root to deploy subgraph to local graph node:
 ### Prerequisites
 - Create Postgres database named `badges_dev`
   - Enter psql command-line interface - `psql -U postgres -h localhost`
-  - Create database - `create database "badges-dev";`
+  - Create database - `create database "badges_dev";`
 - Environment variables:
   - `api` - create an dotenv file `/api/.env` file with the following key-value pairs.
 ```
