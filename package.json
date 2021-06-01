@@ -7,7 +7,7 @@
   "author": "CareDAO & DuinGud",
   "license": "MIT",
   "scripts": {
-    "setup": "yarn install && concurrently \"cd api && yarn install\" \"cd client && yarn install\" \"cd base && yarn install\"",
+    "setup": "yarn install && concurrently \"cd api && yarn install\" \"cd client && yarn install\"",
     "clean": "concurrently \"cd api && rm -rf node_modules/\" \"cd client && rm -rf node_modules/\" && rm -rf node_modules",
     "api:dev": "cd api && yarn watch",
     "client:dev": "cd client && yarn start",
