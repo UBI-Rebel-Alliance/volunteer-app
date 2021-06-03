@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { Switch, Route, Link, withRouter, useLocation, Redirect } from "react-router-dom";
+import { Switch, Route, Link, withRouter, useLocation, Redirect, BrowserRouter as Router } from "react-router-dom";
 // import Mint from "./components/Mint";
 // import ViewBadge from "./components/ViewBadge";
 import { UserContext } from "./context/UserContext";
@@ -55,25 +56,22 @@ function App() {
       <UserContext.Provider value={user}>
         <Router>
           {/* change /dashboard */}
-          {user.isLoggedIn && <Redirect to={{ pathname: '/dashboard' }} />}
-          <Switch >
-            <Route exact path="/">
-              <Route exact path="/">
-                <Authenticate setStatus={setUser} />
-              </Route>
-              <div className="app-body">
-                {/* <h1>Badges Module</h1> */}
-                {/* <Mint />
+          {user.isLoggedIn && <Redirect to={{ pathname: "/dashboard" }} />}
+          <Switch >           
+            <div className="app-body">
+              {/* <h1>Badges Module</h1> */}
+              {/* <Mint />
         <ViewBadge /> */}
-                <Route path="/createbadge" render={routerProps => <CreateBadge routerProps={routerProps} />} />
-                <Route path="/claimbadge" render={routerProps => <ClaimBadge routerProps={routerProps} />} />
-                <Route path="/assignbadge" render={routerProps => <AssignBadge routerProps={routerProps} />} />
-                <Route path="/badgeprofile" render={routerProps => <BadgeProfile routerProps={routerProps} />} />
-                <Route path="/managebadges" render={routerProps => <ManageBadges routerProps={routerProps} />} />
-              </div>
-              <PrivateRoute path="/dashboard" component={Dashboard} />
-      </Switch>
-      </Router>
+              <Route path="/" render={routerProps => <Authenticate setStatus={setUser} routerProps={routerProps} />} />
+              <Route path="/createbadge" render={routerProps => <CreateBadge routerProps={routerProps} />} />
+              <Route path="/claimbadge" render={routerProps => <ClaimBadge routerProps={routerProps} />} />
+              <Route path="/assignbadge" render={routerProps => <AssignBadge routerProps={routerProps} />} />
+              <Route path="/badgeprofile" render={routerProps => <BadgeProfile routerProps={routerProps} />} />
+              <Route path="/managebadges" render={routerProps => <ManageBadges routerProps={routerProps} />} />
+            </div>
+            <PrivateRoute path="/dashboard" component={Dashboard} />
+          </Switch>
+        </Router>
       </UserContext.Provider>
     </div>
   );
