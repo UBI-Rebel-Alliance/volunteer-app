@@ -5,13 +5,11 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import { Switch, Route, Link, withRouter, useLocation, Redirect, BrowserRouter as Router } from "react-router-dom";
-// import Mint from "./components/Mint";
-// import ViewBadge from "./components/ViewBadge";
-import { UserContext } from "./context/UserContext";
+import { UserContext } from "./components/Context/UserContext";
 import { checkUser } from "./services/magic";
-import Authenticate from "./components/Authenticate";
-import Dashboard from "./components/Dashboard";
-import PrivateRoute from "./components/PrivateRoute";
+import { Authenticate } from "./components/Auth/Authenticate";
+import { Dashboard } from "./components/Auth/Dashboard";
+import { PrivateRoute } from "./components/Auth/PrivateRoute";
 import Spinner from "react-bootstrap/Spinner";
 import CreateBadge from "./pages/CreateBadge/CreateBadge";
 import ClaimBadge from "./pages/Claim Your Badge/ClaimBadge";
@@ -52,24 +50,23 @@ function App() {
   const location = useLocation();
   return (
     <div className="App">
-      { location.pathname === "/claimbadge" ? null : location.pathname === "/badgeprofile" ? <Navbar /> : <Header />}
+      {/* { location.pathname === "/claimbadge" ? null : location.pathname === "/badgeprofile" ? <Navbar /> : <Header />} */}
       <UserContext.Provider value={user}>
         <Router>
-          {/* change /dashboard */}
           {user.isLoggedIn && <Redirect to={{ pathname: "/dashboard" }} />}
-          <Switch >           
+          <Switch >
             <div className="app-body">
-              {/* <h1>Badges Module</h1> */}
-              {/* <Mint />
-        <ViewBadge /> */}
-              <Route path="/" render={routerProps => <Authenticate setStatus={setUser} routerProps={routerProps} />} />
+              {/* <Route path="/" render={routerProps => <Authenticate setStatus={setUser} routerProps={routerProps} />} /> */}
+              <Route exact path="/" component={Authenticate} />
+              <PrivateRoute path="/dashboard" component={Dashboard} />
+              {/*
               <Route path="/createbadge" render={routerProps => <CreateBadge routerProps={routerProps} />} />
               <Route path="/claimbadge" render={routerProps => <ClaimBadge routerProps={routerProps} />} />
               <Route path="/assignbadge" render={routerProps => <AssignBadge routerProps={routerProps} />} />
               <Route path="/badgeprofile" render={routerProps => <BadgeProfile routerProps={routerProps} />} />
               <Route path="/managebadges" render={routerProps => <ManageBadges routerProps={routerProps} />} />
+              */}
             </div>
-            <PrivateRoute path="/dashboard" component={Dashboard} />
           </Switch>
         </Router>
       </UserContext.Provider>

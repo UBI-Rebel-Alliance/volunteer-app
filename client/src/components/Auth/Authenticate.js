@@ -8,9 +8,9 @@ import {
   FormLabel,
   FormControl,
 } from "react-bootstrap";
-import { loginUser } from "../services/magic";
+import { loginUser } from "../../services/magic";
 
-const Authenticate = ({ setStatus }) => {
+export const Authenticate = ({ setStatus }) => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState("");
   const [error, setError] = useState(null);
@@ -65,5 +65,3 @@ const Authenticate = ({ setStatus }) => {
     </div>
   );
 };
-
-export default Authenticate;

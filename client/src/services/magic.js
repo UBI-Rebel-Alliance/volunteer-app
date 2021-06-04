@@ -1,7 +1,7 @@
 /* eslint-disable node/no-callback-literal */
 import { Magic } from "magic-sdk";
 
-const magic = new Magic(process.env.REACT_APP_PK_KEY);
+const magic = new Magic(process.env.REACT_APP_MAGIC_PUBLISHABLE_KEY);
 
 export const checkUser = async (cb) => {
   const isLoggedIn = await magic.user.isLoggedIn();
