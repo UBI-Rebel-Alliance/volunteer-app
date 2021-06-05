@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useContext } from "react";
 import { NavBar } from "antd-mobile";
 import styled from "styled-components";
 import { ReactComponent as Logo } from "./Logo.svg";
 import { ReactComponent as Mail } from "../../components/Icon/mail copy.svg";
 import { ReactComponent as Bell } from "../../components/Icon/header-bell.svg";
+import { UserContext } from "../../components/Context/UserContext";
+import { Dashboard } from "../../components/Auth/Dashboard";
 
 const FPLogo = styled(Logo)`
 width: 30px;
@@ -43,6 +45,7 @@ border-radius: 0px;
 `;
 
 const Header = () => {
+  const { email } = useContext(UserContext);
   return (
     <HeaderWrapper className="header">
       <StyledNavBar
@@ -53,6 +56,7 @@ const Header = () => {
           <>
             <MailLogo />
             <BellLogo />
+            {email !== null ? <Dashboard /> : null}
           </>
         }
       />

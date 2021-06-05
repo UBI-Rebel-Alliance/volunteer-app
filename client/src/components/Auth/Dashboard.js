@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+// import React, { useContext } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import Button from "react-bootstrap/Button"; // Change to styled component
-import { UserContext } from "../Context/UserContext";
+// import { UserContext } from "../Context/UserContext";
 import { logoutUser } from "../../services/magic";
 
 export const Dashboard = () => {
-  const { email } = useContext(UserContext);
+  // const { email } = useContext(UserContext);
   const history = useHistory();
   const handleLogOut = async () => {
     try {
@@ -22,7 +23,7 @@ export const Dashboard = () => {
           Sign Out
         </Button>
       </div>
-      <h1 className="h1">User: {email}</h1>
+      {/* <h1 className="h1">User: {email}</h1> */}
     </div>
   );
 };

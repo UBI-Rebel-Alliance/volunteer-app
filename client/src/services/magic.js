@@ -12,9 +12,8 @@ export const checkUser = async (cb) => {
   return cb({ isLoggedIn: false });
 };
 
-export const loginUser = async (email, cb) => {
+export const loginUser = async (email) => {
   await magic.auth.loginWithMagicLink({ email });
-  return cb({ isLoggedIn: true });
 };
 
 export const logoutUser = async () => {

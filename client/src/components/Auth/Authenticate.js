@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import { loginUser } from "../../services/magic";
 
-export const Authenticate = ({ setStatus }) => {
+export const Authenticate = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState("");
   const [error, setError] = useState(null);
@@ -26,9 +26,9 @@ export const Authenticate = ({ setStatus }) => {
       return;
     }
     try {
-      await loginUser(email, setStatus);
+      await loginUser(email);
       setLoading(false);
-      history.replace("/dashboard");
+      history.replace("/createbadge");
     } catch (error) {
       setError("Unable to log in");
       console.error(error);

@@ -50,22 +50,20 @@ function App() {
   const location = useLocation();
   return (
     <div className="App">
-      {/* { location.pathname === "/claimbadge" ? null : location.pathname === "/badgeprofile" ? <Navbar /> : <Header />} */}
       <UserContext.Provider value={user}>
+        { location.pathname === "/claimbadge" ? null : location.pathname === "/badgeprofile" ? <Navbar /> : <Header />}
         <Router>
-          {user.isLoggedIn && <Redirect to={{ pathname: "/dashboard" }} />}
+          {user.isLoggedIn && <Redirect to={{ pathname: "/createbadge" }} />}
           <Switch >
             <div className="app-body">
               {/* <Route path="/" render={routerProps => <Authenticate setStatus={setUser} routerProps={routerProps} />} /> */}
               <Route exact path="/" component={Authenticate} />
-              <PrivateRoute path="/dashboard" component={Dashboard} />
-              {/*
+              {/* <PrivateRoute path="/dashboard" component={Dashboard} /> */}
               <Route path="/createbadge" render={routerProps => <CreateBadge routerProps={routerProps} />} />
               <Route path="/claimbadge" render={routerProps => <ClaimBadge routerProps={routerProps} />} />
               <Route path="/assignbadge" render={routerProps => <AssignBadge routerProps={routerProps} />} />
               <Route path="/badgeprofile" render={routerProps => <BadgeProfile routerProps={routerProps} />} />
               <Route path="/managebadges" render={routerProps => <ManageBadges routerProps={routerProps} />} />
-              */}
             </div>
           </Switch>
         </Router>
