@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { authenticateUser } from "../../services/user";
 import {
   Button,
   Form,
@@ -8,7 +9,7 @@ import {
   FormLabel,
   FormControl,
 } from "react-bootstrap";
-import { loginUser } from "../../services/magic";
+// import { loginUser } from "../../services/magic";
 
 export const Authenticate = () => {
   const [email, setEmail] = useState("");
@@ -26,7 +27,7 @@ export const Authenticate = () => {
       return;
     }
     try {
-      await loginUser(email);
+      await authenticateUser(email);
       setLoading(false);
       history.replace("/createbadge");
     } catch (error) {
