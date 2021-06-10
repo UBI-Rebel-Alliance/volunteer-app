@@ -9,7 +9,6 @@ import {
   FormLabel,
   FormControl,
 } from "react-bootstrap";
-// import { loginUser } from "../../services/magic";
 
 export const Authenticate = () => {
   const [email, setEmail] = useState("");

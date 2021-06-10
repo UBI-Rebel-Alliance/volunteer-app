@@ -19,3 +19,11 @@ export const loginUser = async (email) => {
 export const logoutUser = async () => {
   await magic.user.logout();
 };
+
+export const getDidToken = async () => {
+  try {
+    return await magic.user.generateIdToken();
+  } catch (error) {
+    console.log(error);
+  }
+};

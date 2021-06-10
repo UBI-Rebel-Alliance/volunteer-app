@@ -11,7 +11,7 @@ export const Dashboard = () => {
   const handleLogOut = async () => {
     try {
       await logoutUser();
-      history.replace("/");
+      history.push("/");
     } catch (error) {
       console.error(error);
     }
