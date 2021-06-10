@@ -109,7 +109,7 @@ router.post("/logout", async (req, res) => {
     // @ts-ignore
     await magic.users.logoutByIssuer(req.user.issuer)
     req.logout()
-    // res.clearCookie("badges-auth", { path: "/" })
+    res.clearCookie("badges-auth", { path: "/" })
     return res.status(200).end()
   } else {
     return res

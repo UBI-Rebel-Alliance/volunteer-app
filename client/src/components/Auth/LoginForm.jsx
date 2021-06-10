@@ -10,7 +10,7 @@ import {
   FormControl,
 } from "react-bootstrap";
 
-export const Authenticate = () => {
+export const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState("");
   const [error, setError] = useState(null);
@@ -26,9 +26,13 @@ export const Authenticate = () => {
       return;
     }
     try {
-      await authenticateUser(email);
+      const response = await authenticateUser(email);
       setLoading(false);
-      history.replace("/createbadge");
+      if (response.status === 200) {
+        history.push("/badgeprofile");
+      } else {
+        console.log("Error authenticating"); // must handle error
+      }
     } catch (error) {
       setError("Unable to log in");
       console.error(error);

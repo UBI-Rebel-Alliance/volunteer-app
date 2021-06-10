@@ -7,8 +7,8 @@ import "./App.css";
 import { Switch, Route, Link, withRouter, useLocation, Redirect, BrowserRouter as Router } from "react-router-dom";
 import { UserContext } from "./components/Context/UserContext";
 import { checkUser } from "./services/magic";
-import { Authenticate } from "./components/Auth/Authenticate";
-import { Dashboard } from "./components/Auth/Dashboard";
+import { LoginForm } from "./components/Auth/LoginForm";
+import { LogoutButton } from "./components/Auth/Logout";
 import { PrivateRoute } from "./components/Auth/PrivateRoute";
 import Spinner from "react-bootstrap/Spinner";
 import CreateBadge from "./pages/CreateBadge/CreateBadge";
@@ -53,12 +53,11 @@ function App() {
       <UserContext.Provider value={user}>
         { location.pathname === "/claimbadge" ? null : location.pathname === "/badgeprofile" ? <Navbar /> : <Header />}
         <Router>
-          {user.isLoggedIn && <Redirect to={{ pathname: "/createbadge" }} />}
+          {!user.isLoggedIn && <Redirect to={{ pathname: "/login" }} />
+          }
           <Switch >
             <div className="app-body">
-              {/* <Route path="/" render={routerProps => <Authenticate setStatus={setUser} routerProps={routerProps} />} /> */}
-              <Route exact path="/" component={Authenticate} />
-              {/* <PrivateRoute path="/dashboard" component={Dashboard} /> */}
+              <Route exact path="/login" component={LoginForm} />
               <Route path="/createbadge" render={routerProps => <CreateBadge routerProps={routerProps} />} />
               <Route path="/claimbadge" render={routerProps => <ClaimBadge routerProps={routerProps} />} />
               <Route path="/assignbadge" render={routerProps => <AssignBadge routerProps={routerProps} />} />

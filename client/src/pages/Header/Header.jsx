@@ -6,7 +6,7 @@ import { ReactComponent as Logo } from "./Logo.svg";
 import { ReactComponent as Mail } from "../../components/Icon/mail copy.svg";
 import { ReactComponent as Bell } from "../../components/Icon/header-bell.svg";
 import { UserContext } from "../../components/Context/UserContext";
-import { Dashboard } from "../../components/Auth/Dashboard";
+import { LogoutButton } from "../../components/Auth/Logout";
 
 const FPLogo = styled(Logo)`
 width: 30px;
@@ -56,7 +56,7 @@ const Header = () => {
           <>
             <MailLogo />
             <BellLogo />
-            {email !== null ? <Dashboard /> : null}
+            {email !== null ? <LogoutButton /> : null}
           </>
         }
       />

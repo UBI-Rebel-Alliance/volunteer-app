@@ -13,7 +13,7 @@ export const authenticateUser = async (email) => {
       credentials: "same-origin",
       body: JSON.stringify({ email }),
     });
-    console.log("Authenticate Response: ", res);
+    return res;
   } catch (error) {
     console.log(error);
   }
@@ -24,7 +24,7 @@ export const signOutUser = async () => {
     const res = await fetch("http://localhost:8000/user/logout", {
       method: "POST",
     });
-    console.log("logout response: ", res);
+    return res;
   } catch (error) {
     console.log(error);
   }

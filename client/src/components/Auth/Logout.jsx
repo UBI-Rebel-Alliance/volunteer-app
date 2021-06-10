@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button"; // Change to styled component
 // import { UserContext } from "../Context/UserContext";
 import { logoutUser } from "../../services/magic";
 
-export const Dashboard = () => {
+export const LogoutButton = () => {
   // const { email } = useContext(UserContext);
   const history = useHistory();
   const handleLogOut = async () => {
