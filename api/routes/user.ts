@@ -88,7 +88,7 @@ passport.deserializeUser(async (id: number, done: DoneFunc) => {
 })
 
 /* Implement Get Data Endpoint */
-router.get("/", async (req, res) => {
+router.get("", async (req, res) => {
   if (req.isAuthenticated()) {
     return res
       .status(200)

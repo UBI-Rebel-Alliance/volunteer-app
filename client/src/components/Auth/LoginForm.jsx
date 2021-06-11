@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { authenticateUser } from "../../services/user";
+import { authenticateUser, useUser } from "../../services/user";
 import {
   Button,
   Form,
@@ -14,6 +14,8 @@ export const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState("");
   const [error, setError] = useState(null);
+
+  useUser({ redirectTo: "/badgeprofile", redirectIfFound: true });
 
   const history = useHistory();
 
