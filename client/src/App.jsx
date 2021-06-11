@@ -51,7 +51,8 @@ function App() {
   return (
     <div className="App">
       <UserContext.Provider value={user}>
-        { location.pathname === "/claimbadge" ? null : location.pathname === "/badgeprofile" ? <Navbar /> : <Header />}
+        {/* location.pathname === "/claimbadge" ? null : location.pathname === "/badgeprofile" ? <Navbar /> : <Header /> */}
+        <Header />
         <Router>
           {user.isLoggedIn
             ? <Redirect to={{ pathname: "/badgeprofile" }} />
