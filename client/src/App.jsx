@@ -19,12 +19,9 @@ import ManageBadges from "./pages/Manage Badges/ManageBadges";
 import Header from "./pages/Header/Header";
 import Navbar from "./pages/Header/Navbar";
 import Pinata from "./pages/Pinata";
-import { useUser } from "./services/user";
 
 function App() {
-  const [users, setUser] = useState({ isLoggedIn: false, email: "" });
-  const { user } = useUser({ redirectTo: "/login" });
-  console.log("useUser: ", user);
+  const [user, setUser] = useState({ isLoggedIn: false, email: "" });
   const [loading, setLoading] = useState();
   useEffect(() => {
     const validateUser = async () => {
@@ -37,7 +34,7 @@ function App() {
       }
     };
     validateUser();
-  }, [users.isLoggedIn]);
+  }, [user.isLoggedIn]);
 
   if (loading) {
     return (
@@ -51,31 +48,6 @@ function App() {
   }
 
   const location = useLocation();
-
-  // if (user) {
-  return (
-    <div className="App">
-      <Router>
-        <Switch >
-          <div className="app-body">
-
-            {!user
-              ? <Route path="/login" component={LoginForm} />
-              : <Route path="/badgeprofile" render={routerProps => <BadgeProfile routerProps={routerProps} />} />
-            }
-            {/*
-                <Route path="/createbadge" render={routerProps => <CreateBadge routerProps={routerProps} />} />
-                <Route path="/claimbadge" render={routerProps => <ClaimBadge routerProps={routerProps} />} />
-                <Route path="/assignbadge" render={routerProps => <AssignBadge routerProps={routerProps} />} />
-                <Route path="/managebadges" render={routerProps => <ManageBadges routerProps={routerProps} />} />
-            */}
-          </div>
-        </Switch>
-      </Router>
-    </div>
-  );
-  // }
-  /*
   return (
     <div className="App">
       <UserContext.Provider value={user}>
@@ -99,7 +71,6 @@ function App() {
       </UserContext.Provider>
     </div>
   );
-  */
 }
 
 export default App;
