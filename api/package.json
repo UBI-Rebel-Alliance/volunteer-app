@@ -27,8 +27,6 @@
     "memorystore": "^1.6.4",
     "morgan": "^1.10.0",
     "objection": "^2.2.14",
-    "passport": "^0.4.1",
-    "passport-magic": "^1.0.0",
     "pg": "^8.5.1"
   },
   "devDependencies": {

@@ -4,7 +4,6 @@ import logger from "morgan"
 import session from "express-session"
 import passport from "passport"
 import userRouter from "./routes/user"
-import badgeRouter from "./routes/badge"
 import cors from "cors"
 import { config } from "./libs/config"
 import requestId from "express-request-id"
@@ -28,7 +27,7 @@ app.set("trust proxy", 1)
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser(config.apiSecretKey))
-app.use(cors())
+app.use(cors({ origin: config.clientUrl }))
 app.use(requestId())
 
 logger.token("id", (req) => {
@@ -79,7 +78,6 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use("/user", userRouter)
-app.use("/badge", badgeRouter)
 app.get("/health_check", (_, res) => res.status(200).end("Healthy"))
 app.get("/", (_, res) => res.status(404).end("Nothing here"))
 
