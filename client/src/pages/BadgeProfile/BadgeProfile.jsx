@@ -1,5 +1,7 @@
 /* eslint-disable max-len */
-import React from "react";
+import React, { useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import { UserContext } from "../../components/Context/UserContext";
 import styled from "styled-components";
 import { theme } from "../../constants/theme";
 import BaseButton from "../../components/Button/BaseButton";
@@ -36,7 +38,7 @@ border-radius: 0px 0px 2.5vmax 2.5vmax;
 transition: .5s;
 @media only screen and (min-width: 1000px) {
   top: calc(75px - 8vw);
-} 
+}
 svg {
   width: 40px;
 }
@@ -213,7 +215,15 @@ top: 4px;
 border-radius: 0px;
 `;
 
-function BadgeProfile() {
+export const BadgeProfile = () => {
+  const history = useHistory();
+  const [user] = useContext(UserContext);
+
+  // Redirect to login page if not loading and no user found
+  useEffect(() => {
+    user && !user.loading && !user.issuer && history.push("/login");
+  }, [user, history]);
+
   return (
     <StyledProfile className="app-body">
       <StyledBanner className="banner" />
@@ -247,6 +257,4 @@ function BadgeProfile() {
       </div>
     </StyledProfile>
   );
-}
-
-export default BadgeProfile;
+};

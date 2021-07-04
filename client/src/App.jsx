@@ -4,72 +4,44 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { Switch, Route, Link, withRouter, useLocation, Redirect, BrowserRouter as Router } from "react-router-dom";
+import { Switch, Route, Redirect, BrowserRouter as Router } from "react-router-dom";
 import { UserContext } from "./components/Context/UserContext";
-import { checkUser } from "./services/magic";
-import { LoginForm } from "./components/Auth/LoginForm";
-import { LogoutButton } from "./components/Auth/Logout";
-import { PrivateRoute } from "./components/Auth/PrivateRoute";
-import Spinner from "react-bootstrap/Spinner";
-import CreateBadge from "./pages/CreateBadge/CreateBadge";
-import ClaimBadge from "./pages/Claim Your Badge/ClaimBadge";
-import AssignBadge from "./pages/Assign Badge/AssignBadge";
-import BadgeProfile from "./pages/Badge Profile/BadgeProfile";
-import ManageBadges from "./pages/Manage Badges/ManageBadges";
-import Header from "./pages/Header/Header";
-import Navbar from "./pages/Header/Navbar";
-import Pinata from "./pages/Pinata";
+import { isUserLoggedIn, getUserMetadata } from "./services/magic";
+import { BadgeProfile } from "./pages/BadgeProfile/BadgeProfile";
+import { Callback } from "./components/Auth/Callback";
+import { Login } from "./components/Auth/Login";
 
 function App() {
-  const [user, setUser] = useState({ isLoggedIn: false, email: "" });
+  const [user, setUser] = useState();
   const [loading, setLoading] = useState();
+
   useEffect(() => {
-    const validateUser = async () => {
-      setLoading(true);
-      try {
-        await checkUser(setUser);
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    validateUser();
-  }, [user.isLoggedIn]);
+    setUser({ loading: true });
+    isUserLoggedIn()
+      ? setUser({ user: getUserMetadata() })
+      : setUser({ user: null });
+  }, []);
 
-  if (loading) {
-    return (
-      <div
-        className="d-flex justify-content-center align-items-center"
-        style={{ height: "100vh" }}
-      >
-        <Spinner animation="border" />
-      </div>
-    );
-  }
-
-  const location = useLocation();
   return (
     <div className="App">
-      <UserContext.Provider value={user}>
-        {/* location.pathname === "/claimbadge" ? null : location.pathname === "/badgeprofile" ? <Navbar /> : <Header /> */}
-        <Header />
+      <div className="app-body">
         <Router>
-          {user.isLoggedIn
-            ? <Redirect to={{ pathname: "/badgeprofile" }} />
-            : <Redirect to={{ pathname: "/login" }} />
-          }
           <Switch >
-            <div className="app-body">
-              <Route exact path="/login" component={LoginForm} />
+            <UserContext.Provider value={[user, setUser]}>
+              <Route exact path="/" component={BadgeProfile} />
+              <Route path="/login" component={Login}/>
+              <Route path="/callback" component={Callback}/>
+              {/*
               <Route path="/createbadge" render={routerProps => <CreateBadge routerProps={routerProps} />} />
               <Route path="/claimbadge" render={routerProps => <ClaimBadge routerProps={routerProps} />} />
               <Route path="/assignbadge" render={routerProps => <AssignBadge routerProps={routerProps} />} />
               <Route path="/badgeprofile" render={routerProps => <BadgeProfile routerProps={routerProps} />} />
               <Route path="/managebadges" render={routerProps => <ManageBadges routerProps={routerProps} />} />
-            </div>
+              */}
+            </UserContext.Provider>
           </Switch>
         </Router>
-      </UserContext.Provider>
+      </div>
     </div>
   );
 }
