@@ -66,7 +66,9 @@ To build and run a local graph node you need to have the following installed on 
 Run below commands in project root to start local graph node:
 1. Clone repo - `git clone https://github.com/graphprotocol/graph-node.git && cd graph-node`
 2. Run IPFS node - `ipfs init` followed by `ipfs daemon`
-3. Run below command a new terminal window to spin local graph node:
+3. If using Ubuntu, you may need to install additional packages:
+`sudo apt-get install -y clang libpq-dev libssl-dev pkg-config`
+4. Run below command a new terminal window to spin local graph node:
 ```
 cargo run -p graph-node --release -- \
   --postgres-url postgresql://postgres:postgres@localhost:5432/graph-node \
