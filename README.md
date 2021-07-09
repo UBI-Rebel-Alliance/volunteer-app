@@ -81,6 +81,8 @@ __NOTE:__ If you are trying to run a local graph node after the initial setup yo
 - Drop database - `drop database if exists "graph-node";`
 - Recreate database - `create database "graph-node";`
 
+If you have issues installing the graph node on your system, refer to [this](https://github.com/graphprotocol/graph-node) repo for more details.
+
 ## Deploy Subgraph to Local Graph Node
 
 ### Pre-requisites
